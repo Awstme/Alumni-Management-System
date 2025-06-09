@@ -1,22 +1,9 @@
-#include <iostream>
 #include <string>
 
 using namespace std;
 
 class Alumni
 {
-protected:
-    string name;
-    string gender;
-    int age;
-    int graduationYear;
-    string department;
-    string className;
-    string address;
-    string phone;
-    string qq;
-    string email;
-
 public:
     Alumni(string name, string gender, int age, int graduationYear, string department, string className, string address, string phone, string qq, string email) {};
 
@@ -41,4 +28,18 @@ public:
     string getPhone();
     string getQq();
     string getEmail();
+
+    void display();
+
+protected:
+    string name;
+    string gender;
+    int age;
+    int graduationYear;
+    string department;
+    string className;
+    string address;
+    string phone;
+    string qq;
+    string email;
 };
