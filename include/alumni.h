@@ -1,5 +1,5 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -16,8 +16,9 @@ protected:
     string phone;
     string qq;
     string email;
+
 public:
-    Alumni(string name,string gender,int age,int graduationYear,string department,string className,string address,string phone,string qq,string email){};
+    Alumni(string name, string gender, int age, int graduationYear, string department, string className, string address, string phone, string qq, string email) {};
 
     void setName(string newName);
     void setGender(string newGender);
@@ -40,5 +41,4 @@ public:
     string getPhone();
     string getQq();
     string getEmail();
-
 };

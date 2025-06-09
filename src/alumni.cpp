@@ -14,7 +14,7 @@ void Alumni::setDepartment(string newDepartment) { department = newDepartment; }
 
 void Alumni::setClassName(string newClassName) { className = newClassName; }
 
-void Alumni::setAddress(string newAddress) { address = newAddress;}
+void Alumni::setAddress(string newAddress) { address = newAddress; }
 
 void Alumni::setPhone(string newPhone) { phone = newPhone; }
 
