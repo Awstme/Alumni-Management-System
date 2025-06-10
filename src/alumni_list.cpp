@@ -24,11 +24,13 @@ AlumniList::AlumniList(string fileName) : size(0), head(NULL)
         {
             head = new Alumni(name, gender, age, graduationYear, department, className, address, phone, qq, email);
             current = head;
+            size++;
         }
         else
         {
             current->next = new Alumni(name, gender, age, graduationYear, department, className, address, phone, qq, email);
             current = current->next;
+            size++;
         }
     }
 }
