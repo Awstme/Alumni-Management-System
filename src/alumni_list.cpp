@@ -14,21 +14,23 @@ AlumniList::AlumniList(string fileName) : size(0), head(NULL)
         return;
     }
     // 读取文件到链表中
+        Alumni *current = NULL;
     while (!inFile.eof())
     {
         string name, gender, department, className, address, phone, qq, email;
         int age, graduationYear;
-        Alumni *current = NULL;
         inFile >> name >> gender >> age >> graduationYear >> department >> className >> address >> phone >> qq >> email;
         if (size == 0)
         {
             head = new Alumni(name, gender, age, graduationYear, department, className, address, phone, qq, email);
             current = head;
+            size++;
         }
         else
         {
             current->next = new Alumni(name, gender, age, graduationYear, department, className, address, phone, qq, email);
             current = current->next;
+            size++;
         }
     }
 }
