@@ -1,8 +1,12 @@
+#ifndef ALUMNI_LIST_H
+#define ALUMNI_LIST_H
+
 #include "alumni.h"
 
 class AlumniList
 {
 public:
+    AlumniList(string fileName);
     void addAlumni(Alumni alumni);
     void deleteAlumni(string name);
     void display();
@@ -18,5 +22,7 @@ public:
     // void displayAllAlumniByDepartment(string department);
 protected:
     int size;
-    Alumni *head=NULL;
+    Alumni *head = NULL;
 };
+
+#endif

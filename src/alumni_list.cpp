@@ -4,12 +4,41 @@
 
 using namespace std;
 
-void AlumniList::load()
+AlumniList::AlumniList(string fileName) : size(0), head(NULL)
 {
-    ifstream inFile("../alumni_data.txt");
-    // 空文件检测 待写
+    ifstream inFile(fileName);
+    // 检查文件是否成功打开
+    if (!inFile)
+    {
+        cerr << "File not found!" << endl;
+        return;
+    }
+    // 读取文件到链表中
     while (!inFile.eof())
     {
-        
+        string name, gender, department, className, address, phone, qq, email;
+        int age, graduationYear;
+        Alumni *current = NULL;
+        inFile >> name >> gender >> age >> graduationYear >> department >> className >> address >> phone >> qq >> email;
+        if (size == 0)
+        {
+            head = new Alumni(name, gender, age, graduationYear, department, className, address, phone, qq, email);
+            current = head;
+        }
+        else
+        {
+            current->next = new Alumni(name, gender, age, graduationYear, department, className, address, phone, qq, email);
+            current = current->next;
+        }
+    }
+}
+
+void AlumniList::display()
+{
+    Alumni *current = head;
+    while (current != NULL)
+    {
+        cout  << "Name: " << current->getName() << " Gender: " << current->getGender() << " Age: " << current->getAge() << " Graduation Year: " << current->getGraduationYear() << " Department: " << current->getDepartment() << " Class Name: " << current->getClassName() << " Address: " << current->getAddress() << " Phone: " << current->getPhone() << " QQ: " << current->getQq() << " Email: " << current->getEmail() << endl;
+        current = current->next;
     }
 }

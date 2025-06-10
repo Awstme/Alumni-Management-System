@@ -1,3 +1,6 @@
+#ifndef ALUMNI_H
+#define ALUMNI_H
+
 #include <string>
 
 using namespace std;
@@ -5,7 +8,8 @@ using namespace std;
 class Alumni
 {
 public:
-    Alumni(string name, string gender, int age, int graduationYear, string department, string className, string address, string phone, string qq, string email) {};
+    Alumni *next;
+    Alumni(string name, string gender, int age, int graduationYear, string department, string className, string address, string phone, string qq, string email);
 
     void setName(string newName);
     void setGender(string newGender);
@@ -43,3 +47,5 @@ protected:
     string qq;
     string email;
 };
+
+#endif // ALUMNI_H
