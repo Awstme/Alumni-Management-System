@@ -1,6 +1,12 @@
 #include "alumni.h"
 
-Alumni::Alumni(string name, string gender, int age, int graduationYear, string department, string className, string address, string phone, string qq, string email) : name(name), gender(gender), age(age), graduationYear(graduationYear), department(department), className(className), address(address), phone(phone), qq(qq), email(email), next(NULL) {}
+Alumni::Alumni(string name, string gender, int age, int graduationYear, string department, string className,
+               string address, string phone, string qq, string email) : next(NULL), name(name), gender(gender),
+                                                                        age(age), graduationYear(graduationYear),
+                                                                        department(department), className(className),
+                                                                        address(address), phone(phone), qq(qq),
+                                                                        email(email) {
+}
 
 void Alumni::setName(string newName) { name = newName; }
 void Alumni::setGender(string newGender) { gender = newGender; }
