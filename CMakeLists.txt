@@ -2,10 +2,6 @@ cmake_minimum_required(VERSION 3.31)
 project(Alumni_Management_System)
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static-libgcc -static-libstdc++")
-
-
-#include_directories(include)
 
 add_executable(Alumni_Management_System
         src/main.cpp
@@ -15,4 +11,6 @@ add_executable(Alumni_Management_System
         src/alumni.h
         src/alumni_list.cpp
         src/alumni_list.h
+        src/menu.cpp
+        src/menu.h
 )

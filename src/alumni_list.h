@@ -3,19 +3,22 @@
 
 #include "alumni.h"
 
-class AlumniList
-{
+class AlumniList {
 public:
-    AlumniList(string fileName);
-    void addAlumni(Alumni alumni);
-    void deleteAlumni(string name);
+    AlumniList(const std::string &fileName);
+
+    // void addAlumni(Alumni alumni);
+    // void deleteAlumni(std::string name);
     void display();
-    void search(string name);
-    void sort();
-    void save();
-    void load();
-    void clear();
-    void update(string name, Alumni newAlumni);
+
+    void displayDetail();
+
+    // void search(std::string name);
+    // void sort();
+    // void save();
+    // void load();
+    // void clear();
+    // void update(std::string name, Alumni newAlumni);
     // vector<Alumni> readAllAlumni();
     // void displayAllAlumni();
     // void displayAllAlumniByGender(string gender);
