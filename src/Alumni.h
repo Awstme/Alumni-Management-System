@@ -1,11 +1,11 @@
 #ifndef ALUMNI_H
 #define ALUMNI_H
 
-#include "person.h"
+#include "Person.h"
 #include <string>
 
 
-class Alumni : public person {
+class Alumni : public Person {
 public:
     Alumni *next;
 
@@ -41,7 +41,7 @@ public:
 
     int getGraduationYear();
 
-    std::string getDepartment();
+    std::string getMajor();
 
     std::string getClassName();
 
@@ -63,7 +63,7 @@ protected:
     int age;
     int graduationYear;
     // int stu_id;
-    std::string department;
+    std::string major;
     std::string className;
     std::string address;
     std::string phone;

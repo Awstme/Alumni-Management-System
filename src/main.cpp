@@ -1,5 +1,5 @@
-#include "menu.h"
-#include "alumni_list.h"
+#include "Menu.h"
+#include "AlumniList.h"
 // #include "globals.h"
 #include <iostream>
 #include <string>

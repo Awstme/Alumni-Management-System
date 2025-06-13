@@ -1,7 +1,7 @@
 #ifndef ALUMNI_LIST_H
 #define ALUMNI_LIST_H
 
-#include "alumni.h"
+#include "Alumni.h"
 
 class AlumniList {
 public:
@@ -13,9 +13,18 @@ public:
 
     void displayDetail();
 
-    // void search(std::string name);
+    void searchByName(std::string name);
+
+    void searchByGraduationYear(int year);
+
+    void searchByMajor(std::string major);
+
+    void searchByClassName(std::string className);
+
     void ascendingSortGraduationYear();
+
     void descendingSortGraduationYear();
+
     // void save();
     // void load();
     // void clear();
@@ -26,7 +35,7 @@ public:
     // void displayAllAlumniByDepartment(string department);
 protected:
     int size;
-    Alumni *head = NULL;
+    Alumni *head;
 };
 
 #endif

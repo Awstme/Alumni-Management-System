@@ -1,6 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
-#include "alumni_list.h"
+
+#include "AlumniList.h"
 #include <string>
 
 
@@ -30,6 +31,10 @@ public:
     void displaySortMenu();
 
     void handleSortMenu();
+
+    void displaySearchMenu();
+
+    void handleSearchMenu();
 protected:
     AlumniList alumni_list;
     const std::string select="输入数字序号选择功能:";
@@ -43,6 +48,8 @@ protected:
     const std::string change_alumni="修改校友信息";
     const std::string modify_password="修改密码";
     const std::string logout="注销登录";
+    // const std::string exit="退出系统";
+    const std::string back="返回上一级";
     const std::string invalid_input="无效的输入！";
     const std::string ascending_sort_by_gratuation_year="按毕业年份升序排序";
     const std::string descending_sort_by_gratuation_year="按毕业年份降序排序";

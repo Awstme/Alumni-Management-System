@@ -9,8 +9,8 @@ add_executable(Alumni_Management_System
         src/person.h
         src/alumni.cpp
         src/alumni.h
-        src/alumni_list.cpp
-        src/alumni_list.h
+        src/AlumniList.cpp
+        src/AlumniList.h
         src/menu.cpp
         src/menu.h
 )

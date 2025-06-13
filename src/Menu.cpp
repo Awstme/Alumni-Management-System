@@ -24,31 +24,36 @@ void Menu::handleLogin() {
     cin >> choice;
 
     switch (choice) {
-        case 1:
+        case 1: {
             cout << "您选择了：校友登录" << endl;
             displayAlumniMenu();
             handleAlumniMenu();
             break;
-        case 2:
+        }
+        case 2: {
             cout << "您选择了：访客登录" << endl;
             displayVisitorMenu();
             handleVisitorMenu();
             break;
-        case 3:
+        }
+        case 3: {
             cout << "您选择了：管理员登录" << endl;
             displayManagerMenu();
             handleManagerMenu();
             break;
-        case 4:
+        }
+        case 4: {
             cout << "您选择了：退出系统" << endl;
             cout << "感谢使用校友录管理系统！" << endl;
             exit(0);
             break;
-        default:
+        }
+        default: {
             cout << "无效的选择，请重新输入！" << endl;
             displayLoginMenu(); // 如果选择无效，重新显示菜单
             handleLogin(); // 递归调用以重新选择
             break;
+        }
     }
 }
 
@@ -71,32 +76,41 @@ void Menu::handleAlumniMenu() {
     cin >> choice;
 
     switch (choice) {
-        case 1:
+        case 1: {
             cout << you_select << displayAlumniList << endl;
             displaySortMenu();
             handleSortMenu();
             break;
-        case 2:
+        }
+        case 2: {
             cout << you_select << search << endl;
+            displaySearchMenu();
+            handleSearchMenu();
             break;
-        case 3:
+        }
+        case 3: {
             cout << you_select << profile << endl;
             break;
-        case 4:
+        }
+        case 4: {
             cout << you_select << modify_profile << endl;
             break;
-        case 5:
+        }
+        case 5: {
             cout << you_select << modify_password << endl;
             break;
-        case 6:
+        }
+        case 6: {
             cout << logout << "..." << endl;
             // 可以再次调用 displayLoginMenu 或其他操作
             break;
-        default:
+        }
+        default: {
             cout << invalid_input << endl;
             displayAlumniMenu(); // 如果选择无效，重新显示菜单
             handleAlumniMenu(); // 递归调用以重新选择
             break;
+        }
     }
 }
 
@@ -112,6 +126,21 @@ void Menu::displayVisitorMenu() {
 }
 
 void Menu::handleVisitorMenu() {
+    int choice;
+    cin >> choice;
+
+    switch (choice) {
+        case 1: {
+            cout << you_select << displayAlumniList << endl;
+            displaySortMenu();
+            handleSortMenu();
+            break;
+        }
+        case 2: {
+            cout << you_select << search << endl;
+            break;
+        }
+    }
 }
 
 void Menu::displayManagerMenu() {
@@ -132,30 +161,98 @@ void Menu::displayManagerMenu() {
 }
 
 void Menu::handleManagerMenu() {
+    int choice;
+    cin >> choice;
+
+    switch (choice) {
+    }
 }
 
 void Menu::displaySortMenu() {
     cout << "=====================================" << endl;
     cout << "       校友录管理系统 - 排序功能菜单      " << endl;
     cout << "=====================================" << endl;
-    cout << "1. " << ascending_sort_by_gratuation_year << endl;
-    cout << "2. " << descending_sort_by_gratuation_year << endl;
+    cout << "1. 按届级升序" << endl;
+    cout << "2. 按届级降序" << endl;
+    cout << "3. 按姓名升序" << endl;
+    cout << "4. 按姓名降序" << endl;
+    cout << "0. " << back << endl;
     cout << "=====================================" << endl;
+    cout << select;
 }
 
 void Menu::handleSortMenu() {
     int choice;
     cin >> choice;
     switch (choice) {
-        case 1:
+        case 1: {
             alumni_list.ascendingSortGraduationYear();
             alumni_list.display();
             break;
-        case 2:
+        }
+        case 2: {
             alumni_list.descendingSortGraduationYear();
             alumni_list.display();
             break;
+        }
+        case 0: {
+            cout << "返回上一级菜单..." << endl;
+
+            break;
+        }
     }
 }
 
-#include "menu.h"
+void Menu::displaySearchMenu() {
+    cout << "=====================================" << endl;
+    cout << "       校友录管理系统 - 查找功能菜单      " << endl;
+    cout << "=====================================" << endl;
+    cout << "1, 按姓名查找" << endl;
+    cout << "2, 按届级查找" << endl;
+    cout << "3, 按专业查找" << endl;
+    cout << "4, 按班级查找" << endl;
+    cout << "0. " << back << endl;
+    cout << "=====================================" << endl;
+    cout << select;
+}
+
+void Menu::handleSearchMenu() {
+    int choice;
+    cin >> choice;
+    switch (choice) {
+        case 1: {
+            cout << "请输入姓名：" << endl;
+            string name;
+            cin >> name;
+            alumni_list.searchByName(name);
+            break;
+        }
+        case 2: {
+            cout << "请输入届级：" << endl;
+            int year;
+            cin >> year;
+            alumni_list.searchByGraduationYear(year);
+            break;
+        }
+        case 3: {
+            cout << "请输入专业：" << endl;
+            string major;
+            cin >> major;
+            alumni_list.searchByMajor(major);
+            break;
+        }
+        case 4: {
+            cout << "请输入班级：" << endl;
+            string className;
+            cin >> className;
+            alumni_list.searchByClassName(className);
+            break;
+        }
+        case 0: {
+            cout << "返回上一级菜单..." << endl;
+            // 返回上一级菜单函数
+            break;
+        }
+        default: { cout << invalid_input << endl; }
+    }
+}

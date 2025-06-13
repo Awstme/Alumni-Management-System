@@ -1,4 +1,4 @@
-#include "alumni_list.h"
+#include "AlumniList.h"
 #include <iostream>
 #include <fstream>
 
@@ -41,6 +41,35 @@ void AlumniList::display() {
 }
 
 void AlumniList::displayDetail() {
+}
+
+void AlumniList::searchByName(std::string name) {
+    Alumni *current = head;
+    int count = 0;
+    while (current != nullptr) {
+        if (current->getName() == name) {
+            cout << "找到校友：" << endl;
+            current->display();
+            count++;
+        }
+        current = current->next;
+    }
+    if (count > 0) {
+        cout << "共找到" << count << "位校友！" << endl;
+        return;
+    } else {
+        cout << "未查找到此校友！" << endl;
+        return;
+    }
+}
+
+void AlumniList::searchByGraduationYear(int year) {
+}
+
+void AlumniList::searchByMajor(std::string major) {
+}
+
+void AlumniList::searchByClassName(std::string className) {
 }
 
 void AlumniList::ascendingSortGraduationYear() {
