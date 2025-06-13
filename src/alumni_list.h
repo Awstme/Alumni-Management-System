@@ -14,7 +14,8 @@ public:
     void displayDetail();
 
     // void search(std::string name);
-    // void sort();
+    void ascendingSortGraduationYear();
+    void descendingSortGraduationYear();
     // void save();
     // void load();
     // void clear();

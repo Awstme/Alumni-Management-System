@@ -62,6 +62,7 @@ protected:
     std::string gender;
     int age;
     int graduationYear;
+    // int stu_id;
     std::string department;
     std::string className;
     std::string address;

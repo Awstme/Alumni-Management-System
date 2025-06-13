@@ -13,4 +13,6 @@ add_executable(Alumni_Management_System
         src/alumni_list.h
         src/menu.cpp
         src/menu.h
+        src/globals.h
+        src/globals.cpp
 )
