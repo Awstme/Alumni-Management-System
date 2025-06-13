@@ -195,6 +195,16 @@ void Menu::handleSortMenu() {
             alumni_list.display();
             break;
         }
+        case 3: {
+            alumni_list.ascendingSortName();
+            alumni_list.display();
+            break;
+        }
+        case 4: {
+            alumni_list.descendingSortName();
+            alumni_list.display();
+            break;
+        }
         case 0: {
             cout << "返回上一级菜单..." << endl;
 

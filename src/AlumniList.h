@@ -25,6 +25,10 @@ public:
 
     void descendingSortGraduationYear();
 
+    void ascendingSortName();
+
+    void descendingSortName();
+
     // void save();
     // void load();
     // void clear();

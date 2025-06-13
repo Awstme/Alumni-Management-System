@@ -125,3 +125,57 @@ void AlumniList::descendingSortGraduationYear() {
         }
     }
 }
+
+void AlumniList::ascendingSortName() {
+    for (int i = 0; i < size; i++) {
+        Alumni *current = head, *pre = nullptr, *next = current->next;
+        while (next != nullptr) {
+            if (current->getName() >= next->getName()) {
+                current->next = next->next;
+                next->next = current;
+                if (pre == nullptr) {
+                    head = next;
+                } else {
+                    pre->next = next;
+                }
+                pre = next;
+                next = current->next;
+            } else {
+                if (pre == nullptr) {
+                    pre = current;
+                } else {
+                    pre = pre->next;
+                }
+                current = current->next;
+                next = next->next;
+            }
+        }
+    }
+}
+
+void AlumniList::descendingSortName() {
+    for (int i = 0; i < size; i++) {
+        Alumni *current = head, *pre = nullptr, *next = current->next;
+        while (next != nullptr) {
+            if (current->getName() <= next->getName()) {
+                current->next = next->next;
+                next->next = current;
+                if (pre == nullptr) {
+                    head = next;
+                } else {
+                    pre->next = next;
+                }
+                pre = next;
+                next = current->next;
+            } else {
+                if (pre == nullptr) {
+                    pre = current;
+                } else {
+                    pre = pre->next;
+                }
+                current = current->next;
+                next = next->next;
+            }
+        }
+    }
+}
