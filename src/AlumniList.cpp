@@ -43,7 +43,7 @@ void AlumniList::display() {
 void AlumniList::displayDetail() {
 }
 
-void AlumniList::searchByName(std::string name) {
+void AlumniList::searchByName(const std::string &name) {
     Alumni *current = head;
     int count = 0;
     while (current != nullptr) {
@@ -63,13 +63,64 @@ void AlumniList::searchByName(std::string name) {
     }
 }
 
-void AlumniList::searchByGraduationYear(int year) {
+void AlumniList::searchByGraduationYear(const int year) {
+    Alumni *current = head;
+    int count = 0;
+    while (current != nullptr) {
+        if (current->getGraduationYear() == year) {
+            cout << "找到校友：" << endl;
+            current->display();
+            count++;
+        }
+        current = current->next;
+    }
+    if (count > 0) {
+        cout << "共找到" << count << "位校友！" << endl;
+        return;
+    } else {
+        cout << "未查找到此校友！" << endl;
+        return;
+    }
 }
 
-void AlumniList::searchByMajor(std::string major) {
+void AlumniList::searchByMajor(const std::string &major) {
+    Alumni *current = head;
+    int count = 0;
+    while (current != nullptr) {
+        if (current->getMajor() == major) {
+            cout << "找到校友：" << endl;
+            current->display();
+            count++;
+        }
+        current = current->next;
+    }
+    if (count > 0) {
+        cout << "共找到" << count << "位校友！" << endl;
+        return;
+    } else {
+        cout << "未查找到此校友！" << endl;
+        return;
+    }
 }
 
-void AlumniList::searchByClassName(std::string className) {
+void AlumniList::searchByClassName(const std::string &class_name) {
+    Alumni *current = head;
+    int count = 0;
+    while (current != nullptr) {
+        if (current->getClassName() == class_name) {
+            cout << "找到校友：" << endl;
+            current->display();
+            count++;
+        }
+        current = current->next;
+    }
+    if (count > 0) {
+        cout << "共找到" << count << "位校友！" << endl;
+        return;
+    } else {
+        cout << "未查找到此校友！" << endl;
+        return;
+    }
 }
 
 void AlumniList::ascendingSortGraduationYear() {

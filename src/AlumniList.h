@@ -13,13 +13,13 @@ public:
 
     void displayDetail();
 
-    void searchByName(std::string name);
+    void searchByName(const std::string &name);
 
     void searchByGraduationYear(int year);
 
-    void searchByMajor(std::string major);
+    void searchByMajor(const std::string &major);
 
-    void searchByClassName(std::string className);
+    void searchByClassName(const std::string &class_name);
 
     void ascendingSortGraduationYear();
 
