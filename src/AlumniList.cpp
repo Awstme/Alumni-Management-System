@@ -36,6 +36,7 @@ void AlumniList::addAlumni(Alumni *new_alumni) {
     new_alumni -> next = head;
     head = new_alumni;
     size++;
+    head -> display();
     cout << "添加成功！" << endl;
 }
 

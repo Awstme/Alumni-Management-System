@@ -341,4 +341,5 @@ void Menu::handleAdd() {
     cin >> email;
     Alumni  *new_alumni = new Alumni(name, gender, age, graduationYear, className, major, address, phone, qq, email);
     alumni_list.addAlumni(new_alumni);
+    // 返回上级菜单函数
 }
