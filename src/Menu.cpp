@@ -66,7 +66,7 @@ void Menu::displayAlumniMenu() {
     cout << "3. " << profile << endl;
     cout << "4. " << modify_profile << endl;
     cout << "5. " << modify_password << endl;
-    cout << "6. " << logout << endl;
+    cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
 }
@@ -100,9 +100,9 @@ void Menu::handleAlumniMenu() {
             cout << you_select << modify_password << endl;
             break;
         }
-        case 6: {
+        case 0: {
             cout << logout << "..." << endl;
-            // 可以再次调用 displayLoginMenu 或其他操作
+            displayLoginMenu();
             break;
         }
         default: {
@@ -120,7 +120,7 @@ void Menu::displayVisitorMenu() {
     cout << "=====================================" << endl;
     cout << "1. " << displayAlumniList << endl;
     cout << "2. " << search << endl;
-    cout << "3. " << logout << endl;
+    cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
 }
@@ -138,6 +138,19 @@ void Menu::handleVisitorMenu() {
         }
         case 2: {
             cout << you_select << search << endl;
+            displaySearchMenu();
+            handleSearchMenu();
+            break;
+        }
+        case 0: {
+            cout << logout << "..." << endl;
+            displayLoginMenu();
+            break;
+        }
+        default: {
+            cout << invalid_input << endl;
+            displayVisitorMenu(); // 如果选择无效，重新显示菜单
+            handleVisitorMenu(); // 递归调用以重新选择
             break;
         }
     }
@@ -149,13 +162,13 @@ void Menu::displayManagerMenu() {
     cout << "=====================================" << endl;
     cout << "1. " << displayAlumniList << endl;
     cout << "2. " << search << endl;
-    cout << "3. " << enter_alumni << endl;
+    cout << "3. " << add_alumni << endl;
     cout << "4. " << change_alumni << endl;
     cout << "5. " << delete_alumni << endl;
     cout << "6. " << profile << endl;
     cout << "7. " << modify_profile << endl;
     cout << "8. " << modify_password << endl;
-    cout << "9. " << logout << endl;
+    cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
 }
@@ -165,6 +178,34 @@ void Menu::handleManagerMenu() {
     cin >> choice;
 
     switch (choice) {
+        case 1: {
+            cout << you_select << displayAlumniList << endl;
+            displaySortMenu();
+            handleSortMenu();
+            break;
+        }
+        case 2: {
+            cout << you_select << search << endl;
+            displaySearchMenu();
+            handleSearchMenu();
+            break;
+        }
+        case 3: {
+            cout << you_select << add_alumni << endl;
+            handleAdd();
+            break;
+        }
+        case 0: {
+            cout << logout << "..." << endl;
+            displayLoginMenu();
+            break;
+        }
+        default: {
+            cout << invalid_input << endl;
+            displayManagerMenu(); // 如果选择无效，重新显示菜单
+            handleManagerMenu(); // 递归调用以重新选择
+            break;
+        }
     }
 }
 
@@ -265,4 +306,39 @@ void Menu::handleSearchMenu() {
         }
         default: { cout << invalid_input << endl; }
     }
+}
+
+void Menu::handleAdd() {
+    cout << "请输入姓名：";
+    string name;
+    cin >> name;
+    cout << "请输入性别：";
+    string gender;
+    cin >> gender;
+    cout << "请输入年龄：";
+    int age;
+    cin >> age;
+    cout << "请输入届级：";
+    int graduationYear;
+    cin >> graduationYear;
+    cout << "请输入班级：";
+    string className;
+    cin >> className;
+    cout << "请输入专业：";
+    string major;
+    cin >> major;
+    cout << "请输入地址：";
+    string address;
+    cin >> address;
+    cout << "请输入手机号：";
+    string phone;
+    cin >> phone;
+    cout << "请输入QQ：";
+    string qq;
+    cin >> qq;
+    cout << "请输入邮箱：";
+    string email;
+    cin >> email;
+    Alumni  *new_alumni = new Alumni(name, gender, age, graduationYear, className, major, address, phone, qq, email);
+    alumni_list.addAlumni(new_alumni);
 }

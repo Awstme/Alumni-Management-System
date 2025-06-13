@@ -7,7 +7,7 @@ class AlumniList {
 public:
     AlumniList(const std::string &fileName);
 
-    // void addAlumni(Alumni alumni);
+    void addAlumni(Alumni *new_alumni);
     // void deleteAlumni(std::string name);
     void display();
 

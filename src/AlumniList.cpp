@@ -32,6 +32,13 @@ AlumniList::AlumniList(const string &fileName) : size(0), head(nullptr) {
     ascendingSortGraduationYear();
 }
 
+void AlumniList::addAlumni(Alumni *new_alumni) {
+    new_alumni -> next = head;
+    head = new_alumni;
+    size++;
+    cout << "添加成功！" << endl;
+}
+
 void AlumniList::display() {
     Alumni *current = head;
     while (current != nullptr) {
