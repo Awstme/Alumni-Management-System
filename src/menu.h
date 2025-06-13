@@ -1,10 +1,12 @@
 #ifndef MENU_H
 #define MENU_H
+#include "alumni_list.h"
 #include <string>
 
 
 class Menu {
 public:
+    Menu(std::string file_name);
     // 显示登录菜单
     void displayLoginMenu();
 
@@ -29,6 +31,7 @@ public:
 
     void handleSortMenu();
 protected:
+    AlumniList alumni_list;
     const std::string select="输入数字序号选择功能:";
     const std::string you_select="你选择了:";
     const std::string displayAlumniList="显示校友列表";

@@ -1,9 +1,11 @@
 #include "Menu.h"
-#include "alumni_list.h"
-#include "globals.h"
+// #include "globals.h"
 #include <iostream>
 
 using namespace std;
+
+Menu::Menu(string file_name): alumni_list(AlumniList(file_name)) {
+}
 
 void Menu::displayLoginMenu() {
     cout << "=====================================" << endl;
@@ -71,7 +73,6 @@ void Menu::handleAlumniMenu() {
     switch (choice) {
         case 1:
             cout << you_select << displayAlumniList << endl;
-            is_sort = true;
             displaySortMenu();
             handleSortMenu();
             break;
@@ -147,10 +148,12 @@ void Menu::handleSortMenu() {
     cin >> choice;
     switch (choice) {
         case 1:
-            sort_value=1;
+            alumni_list.ascendingSortGraduationYear();
+            alumni_list.display();
             break;
         case 2:
-            sort_value=2;
+            alumni_list.descendingSortGraduationYear();
+            alumni_list.display();
             break;
     }
 }
