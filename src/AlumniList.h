@@ -9,6 +9,8 @@ public:
 
     void addAlumni(Alumni *new_alumni);
 
+    void updateAlumni(const std::string &name);
+
     void deleteAlumni(const std::string &name);
 
     void display();

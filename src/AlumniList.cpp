@@ -40,6 +40,72 @@ void AlumniList::addAlumni(Alumni *new_alumni) {
     cout << "添加成功！" << endl;
 }
 
+void AlumniList::updateAlumni(const std::string &name) {
+    Alumni *current = head;
+    while (current != nullptr) {
+        if (current->getName() == name) {
+            cout << "=====================================" << endl;
+            cout << "1. 修改地址" << endl;
+            cout << "2. 修改手机号" << endl;
+            cout << "3. 修改QQ" << endl;
+            cout << "4. 修改邮箱" << endl;
+            cout << "0. 返回" << endl;
+            cout << "=====================================" << endl;
+            cout << "请选择要修改的信息：";
+            int choice;
+            cin >> choice;
+            switch (choice) {
+                case 1: {
+                    cout << "请输入新的地址：";
+                    string new_address;
+                    cin >> new_address;
+                    current->setAddress(new_address);
+                    cout << "修改成功！" << endl;
+                    break;
+                }
+                case 2: {
+                    cout << "请输入新手机号：";
+                    string new_phone;
+                    cin >> new_phone;
+                    current->setPhone(new_phone);
+                    cout << "修改成功！" << endl;
+                    break;
+                }
+                case 3: {
+                    cout << "请输入新QQ号：";
+                    string new_qq;
+                    cin >> new_qq;
+                    current->setQq(new_qq);
+                    cout << "修改成功！" << endl;
+                    break;
+                }
+                case 4: {
+                    cout << "请输入新邮箱：";
+                    string new_email;
+                    cin >> new_email;
+                    current->setEmail(new_email);
+                    cout << "修改成功！" << endl;
+                    break;
+                }
+                case 0: {
+                    cout << "已取消修改！" << endl;
+
+                    break;
+                }
+                default: {
+                    cout << "输入错误！请重新输入！" << endl;
+                    updateAlumni(name);
+                    break;
+                }
+            }
+            // 返回上级菜单
+            return;
+        }
+        current = current->next;
+    }
+    cout << "未找到此校友！" << endl;
+}
+
 void AlumniList::deleteAlumni(const std::string &name) {
     Alumni *current = head, *pre = nullptr;
     while (current != nullptr) {
