@@ -33,11 +33,31 @@ AlumniList::AlumniList(const string &fileName) : size(0), head(nullptr) {
 }
 
 void AlumniList::addAlumni(Alumni *new_alumni) {
-    new_alumni -> next = head;
+    new_alumni->next = head;
     head = new_alumni;
     size++;
-    head -> display();
+    head->display();
     cout << "添加成功！" << endl;
+}
+
+void AlumniList::deleteAlumni(const std::string &name) {
+    Alumni *current = head, *pre = nullptr;
+    while (current != nullptr) {
+        if (current->getName() == name) {
+            if (pre == nullptr) {
+                head = current->next;
+            } else {
+                pre->next = current->next;
+            }
+            size--;
+            // delete current;
+            cout << "删除成功！" << endl;
+            return;
+        }
+        pre = current;
+        current = current->next;
+    }
+    cout << "未找到此校友！" << endl;
 }
 
 void AlumniList::display() {

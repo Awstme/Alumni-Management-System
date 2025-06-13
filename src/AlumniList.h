@@ -8,7 +8,9 @@ public:
     AlumniList(const std::string &fileName);
 
     void addAlumni(Alumni *new_alumni);
-    // void deleteAlumni(std::string name);
+
+    void deleteAlumni(const std::string &name);
+
     void display();
 
     void displayDetail();

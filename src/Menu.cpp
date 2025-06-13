@@ -195,6 +195,16 @@ void Menu::handleManagerMenu() {
             handleAdd();
             break;
         }
+        case 4: {
+            cout << you_select << change_alumni << endl;
+
+            break;
+        }
+        case 5: {
+            cout << you_select << delete_alumni << endl;
+            handleDelete();
+            break;
+        }
         case 0: {
             cout << logout << "..." << endl;
             displayLoginMenu();
@@ -309,37 +319,45 @@ void Menu::handleSearchMenu() {
 }
 
 void Menu::handleAdd() {
-    cout << "请输入姓名：";
+    cout << "请输入新校友姓名：";
     string name;
     cin >> name;
-    cout << "请输入性别：";
+    cout << "请输入新校友性别：";
     string gender;
     cin >> gender;
-    cout << "请输入年龄：";
+    cout << "请输入新校友年龄：";
     int age;
     cin >> age;
-    cout << "请输入届级：";
+    cout << "请输入新校友届级：";
     int graduationYear;
     cin >> graduationYear;
-    cout << "请输入班级：";
+    cout << "请输入新校友班级：";
     string className;
     cin >> className;
-    cout << "请输入专业：";
+    cout << "请输入新校友专业：";
     string major;
     cin >> major;
-    cout << "请输入地址：";
+    cout << "请输入新校友地址：";
     string address;
     cin >> address;
-    cout << "请输入手机号：";
+    cout << "请输入新校友手机号：";
     string phone;
     cin >> phone;
-    cout << "请输入QQ：";
+    cout << "请输入新校友QQ：";
     string qq;
     cin >> qq;
-    cout << "请输入邮箱：";
+    cout << "请输入新校友邮箱：";
     string email;
     cin >> email;
-    Alumni  *new_alumni = new Alumni(name, gender, age, graduationYear, className, major, address, phone, qq, email);
+    Alumni *new_alumni = new Alumni(name, gender, age, graduationYear, className, major, address, phone, qq, email);
     alumni_list.addAlumni(new_alumni);
+    // 返回上级菜单函数
+}
+
+void Menu::handleDelete() {
+    cout << "请输入要删除的校友姓名：";
+    string name;
+    cin >> name;
+    alumni_list.deleteAlumni(name);
     // 返回上级菜单函数
 }
