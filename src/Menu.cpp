@@ -41,6 +41,7 @@ void Menu::handleLogin() {
             break;
         }
         case 0: {
+            alumni_list.save();
             cout << "您选择了：退出系统" << endl;
             cout << "感谢使用校友录管理系统！" << endl;
             // exit(0);

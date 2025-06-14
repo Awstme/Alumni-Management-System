@@ -37,6 +37,7 @@ public:
 protected:
     int size;
     Alumni *head;
+    std::string file_name;
 };
 
 #endif

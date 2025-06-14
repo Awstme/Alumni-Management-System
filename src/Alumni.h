@@ -2,7 +2,6 @@
 #define ALUMNI_H
 
 #include "Person.h"
-#include <string>
 
 
 class Alumni : public Person {

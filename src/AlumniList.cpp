@@ -4,7 +4,7 @@
 
 using namespace std;
 
-AlumniList::AlumniList(const string &fileName) : size(0), head(nullptr) {
+AlumniList::AlumniList(const string &fileName) : size(0), head(nullptr), file_name(fileName) {
     ifstream inFile(fileName);
     // 检查文件是否成功打开
     if (!inFile) {
@@ -318,4 +318,23 @@ void AlumniList::descendingSortName() {
 }
 
 void AlumniList::save() {
+    ofstream outfile(file_name, ios::out);
+    Alumni *current = head;
+    while (current != nullptr) {
+        outfile << current->getName() << " "
+                << current->getGender() << " "
+                << current->getAge() << " "
+                << current->getGraduationYear() << " "
+                << current->getMajor() << " "
+                << current->getClassName() << " "
+                << current->getAddress() << " "
+                << current->getPhone() << " "
+                << current->getQq() << " "
+                << current->getEmail();
+        current = current->next;
+        if (current != nullptr) {
+            outfile << endl;
+        }
+    }
+    outfile.close();
 }
