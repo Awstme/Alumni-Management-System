@@ -33,14 +33,7 @@ public:
 
     void descendingSortName();
 
-    // void save();
-    // void load();
-    // void clear();
-    // void update(std::string name, Alumni newAlumni);
-    // vector<Alumni> readAllAlumni();
-    // void displayAllAlumni();
-    // void displayAllAlumniByGender(string gender);
-    // void displayAllAlumniByDepartment(string department);
+    void save();
 protected:
     int size;
     Alumni *head;

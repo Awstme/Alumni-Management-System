@@ -31,15 +31,17 @@ public:
 
     void displaySortMenu();
 
-    void handleSortMenu();
+    void handleSortMenu(const int &identity);
 
     void displaySearchMenu();
 
-    void handleSearchMenu();
+    void handleSearchMenu(const int &identity);
 
     void handleAdd();
 
     void handleDelete();
+
+    void handleUpdate();
 
 protected:
     AlumniList alumni_list;

@@ -150,10 +150,8 @@ void AlumniList::searchByName(const std::string &name) {
     }
     if (count > 0) {
         cout << "共找到" << count << "位校友！" << endl;
-        return;
     } else {
         cout << "未查找到此校友！" << endl;
-        return;
     }
 }
 
@@ -170,10 +168,8 @@ void AlumniList::searchByGraduationYear(const int year) {
     }
     if (count > 0) {
         cout << "共找到" << count << "位校友！" << endl;
-        return;
     } else {
         cout << "未查找到此校友！" << endl;
-        return;
     }
 }
 
@@ -190,10 +186,8 @@ void AlumniList::searchByMajor(const std::string &major) {
     }
     if (count > 0) {
         cout << "共找到" << count << "位校友！" << endl;
-        return;
     } else {
         cout << "未查找到此校友！" << endl;
-        return;
     }
 }
 
@@ -210,10 +204,8 @@ void AlumniList::searchByClassName(const std::string &class_name) {
     }
     if (count > 0) {
         cout << "共找到" << count << "位校友！" << endl;
-        return;
     } else {
         cout << "未查找到此校友！" << endl;
-        return;
     }
 }
 
@@ -323,4 +315,7 @@ void AlumniList::descendingSortName() {
             }
         }
     }
+}
+
+void AlumniList::save() {
 }

@@ -14,9 +14,10 @@ void Menu::displayLoginMenu() {
     cout << "1. 校友登录" << endl;
     cout << "2. 访客登录" << endl;
     cout << "3. 管理员登录" << endl;
-    cout << "4. 退出系统" << endl;
+    cout << "0. 退出系统" << endl;
     cout << "=====================================" << endl;
     cout << select;
+    handleLogin();
 }
 
 void Menu::handleLogin() {
@@ -27,31 +28,27 @@ void Menu::handleLogin() {
         case 1: {
             cout << "您选择了：校友登录" << endl;
             displayAlumniMenu();
-            handleAlumniMenu();
             break;
         }
         case 2: {
             cout << "您选择了：访客登录" << endl;
             displayVisitorMenu();
-            handleVisitorMenu();
             break;
         }
         case 3: {
             cout << "您选择了：管理员登录" << endl;
             displayManagerMenu();
-            handleManagerMenu();
             break;
         }
-        case 4: {
+        case 0: {
             cout << "您选择了：退出系统" << endl;
             cout << "感谢使用校友录管理系统！" << endl;
-            exit(0);
+            // exit(0);
             break;
         }
         default: {
             cout << "无效的选择，请重新输入！" << endl;
             displayLoginMenu(); // 如果选择无效，重新显示菜单
-            handleLogin(); // 递归调用以重新选择
             break;
         }
     }
@@ -69,6 +66,7 @@ void Menu::displayAlumniMenu() {
     cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
+    handleAlumniMenu();
 }
 
 void Menu::handleAlumniMenu() {
@@ -79,13 +77,13 @@ void Menu::handleAlumniMenu() {
         case 1: {
             cout << you_select << displayAlumniList << endl;
             displaySortMenu();
-            handleSortMenu();
+            handleSortMenu(1);
             break;
         }
         case 2: {
             cout << you_select << search << endl;
             displaySearchMenu();
-            handleSearchMenu();
+            handleSearchMenu(1);
             break;
         }
         case 3: {
@@ -108,7 +106,6 @@ void Menu::handleAlumniMenu() {
         default: {
             cout << invalid_input << endl;
             displayAlumniMenu(); // 如果选择无效，重新显示菜单
-            handleAlumniMenu(); // 递归调用以重新选择
             break;
         }
     }
@@ -123,6 +120,7 @@ void Menu::displayVisitorMenu() {
     cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
+    handleVisitorMenu();
 }
 
 void Menu::handleVisitorMenu() {
@@ -133,13 +131,13 @@ void Menu::handleVisitorMenu() {
         case 1: {
             cout << you_select << displayAlumniList << endl;
             displaySortMenu();
-            handleSortMenu();
+            handleSortMenu(2);
             break;
         }
         case 2: {
             cout << you_select << search << endl;
             displaySearchMenu();
-            handleSearchMenu();
+            handleSearchMenu(2);
             break;
         }
         case 0: {
@@ -150,7 +148,6 @@ void Menu::handleVisitorMenu() {
         default: {
             cout << invalid_input << endl;
             displayVisitorMenu(); // 如果选择无效，重新显示菜单
-            handleVisitorMenu(); // 递归调用以重新选择
             break;
         }
     }
@@ -171,6 +168,7 @@ void Menu::displayManagerMenu() {
     cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
+    handleManagerMenu();
 }
 
 void Menu::handleManagerMenu() {
@@ -181,13 +179,13 @@ void Menu::handleManagerMenu() {
         case 1: {
             cout << you_select << displayAlumniList << endl;
             displaySortMenu();
-            handleSortMenu();
+            handleSortMenu(3);
             break;
         }
         case 2: {
             cout << you_select << search << endl;
             displaySearchMenu();
-            handleSearchMenu();
+            handleSearchMenu(3);
             break;
         }
         case 3: {
@@ -197,7 +195,7 @@ void Menu::handleManagerMenu() {
         }
         case 4: {
             cout << you_select << change_alumni << endl;
-
+            handleUpdate();
             break;
         }
         case 5: {
@@ -213,7 +211,6 @@ void Menu::handleManagerMenu() {
         default: {
             cout << invalid_input << endl;
             displayManagerMenu(); // 如果选择无效，重新显示菜单
-            handleManagerMenu(); // 递归调用以重新选择
             break;
         }
     }
@@ -232,7 +229,7 @@ void Menu::displaySortMenu() {
     cout << select;
 }
 
-void Menu::handleSortMenu() {
+void Menu::handleSortMenu(const int &identity) {
     int choice;
     cin >> choice;
     switch (choice) {
@@ -258,9 +255,34 @@ void Menu::handleSortMenu() {
         }
         case 0: {
             cout << "返回上一级菜单..." << endl;
-
-            break;
+            switch (identity) {
+                case 1:
+                    displayAlumniMenu();
+                    break;
+                case 2:
+                    displayManagerMenu();
+                    break;
+                case 3:
+                    displayVisitorMenu();
+                    break;
+            }
+            return;
+            // break;
         }
+    }
+    cout << "按任意键返回上级菜单" << endl;
+    cin.ignore();
+    cin.get();
+    switch (identity) {
+        case 1:
+            displayAlumniMenu();
+            break;
+        case 2:
+            displayManagerMenu();
+            break;
+        case 3:
+            displayVisitorMenu();
+            break;
     }
 }
 
@@ -277,7 +299,7 @@ void Menu::displaySearchMenu() {
     cout << select;
 }
 
-void Menu::handleSearchMenu() {
+void Menu::handleSearchMenu(const int &identity) {
     int choice;
     cin >> choice;
     switch (choice) {
@@ -312,9 +334,24 @@ void Menu::handleSearchMenu() {
         case 0: {
             cout << "返回上一级菜单..." << endl;
             // 返回上一级菜单函数
+            switch (identity) {
+                case 1:
+                    displayAlumniMenu();
+                    break;
+                case 2:
+                    displayManagerMenu();
+                    break;
+                case 3:
+                    displayVisitorMenu();
+                    break;
+            }
+
             break;
         }
-        default: { cout << invalid_input << endl; }
+        default: {
+            cout << invalid_input << endl;
+            break;
+        }
     }
 }
 
@@ -351,7 +388,7 @@ void Menu::handleAdd() {
     cin >> email;
     Alumni *new_alumni = new Alumni(name, gender, age, graduationYear, className, major, address, phone, qq, email);
     alumni_list.addAlumni(new_alumni);
-    // 返回上级菜单函数
+    displayManagerMenu(); // 返回上级菜单
 }
 
 void Menu::handleDelete() {
@@ -359,5 +396,13 @@ void Menu::handleDelete() {
     string name;
     cin >> name;
     alumni_list.deleteAlumni(name);
-    // 返回上级菜单函数
+    displayManagerMenu(); // 返回上级菜单
+}
+
+void Menu::handleUpdate() {
+    cout << "请输入要修改的校友姓名：";
+    string name;
+    cin >> name;
+    alumni_list.updateAlumni(name);
+    displayManagerMenu(); // 返回上级菜单
 }

@@ -14,7 +14,6 @@ int main() {
     const string file_name = "alumni_data.txt";
     Menu menu(file_name);
     menu.displayLoginMenu();
-    menu.handleLogin();
 
     // system("pause");
     return 0;
