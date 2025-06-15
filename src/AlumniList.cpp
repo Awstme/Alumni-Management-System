@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 构造函数：从文件加载校友数据到链表
 AlumniList::AlumniList(const string &fileName) : size(0), head(nullptr), file_name(fileName) {
     ifstream inFile(fileName);
     // 检查文件是否成功打开
@@ -40,6 +41,7 @@ AlumniList::AlumniList(const string &fileName) : size(0), head(nullptr), file_na
     inFile.close();
 }
 
+// 添加校友信息到链表头部
 void AlumniList::addAlumni(Alumni *new_alumni) {
     new_alumni->next = head;
     head = new_alumni;
@@ -48,6 +50,7 @@ void AlumniList::addAlumni(Alumni *new_alumni) {
     cout << "添加成功！" << endl;
 }
 
+// 更新校友信息
 void AlumniList::updateAlumni(const std::string &name) {
     Alumni *current = head;
     while (current != nullptr) {
@@ -113,6 +116,7 @@ void AlumniList::updateAlumni(const std::string &name) {
     cout << "未找到此校友！" << endl;
 }
 
+// 删除指定姓名的校友
 void AlumniList::deleteAlumni(const std::string &name) {
     Alumni *current = head, *pre = nullptr;
     while (current != nullptr) {
@@ -132,6 +136,7 @@ void AlumniList::deleteAlumni(const std::string &name) {
     cout << "未找到此校友！" << endl;
 }
 
+// 显示所有校友信息
 void AlumniList::display(const int &detailValue) {
     Alumni *current = head;
     while (current != nullptr) {
@@ -140,6 +145,7 @@ void AlumniList::display(const int &detailValue) {
     }
 }
 
+// 按用户名搜索校友（用于登录验证）
 Alumni *AlumniList::searchByUserName(const std::string &user_name) {
     Alumni *current = head;
     while (current != nullptr) {
@@ -151,6 +157,7 @@ Alumni *AlumniList::searchByUserName(const std::string &user_name) {
     return nullptr;
 }
 
+// 按姓名搜索并显示校友信息
 void AlumniList::searchByName(const std::string &name) {
     Alumni *current = head;
     int count = 0;
@@ -169,6 +176,7 @@ void AlumniList::searchByName(const std::string &name) {
     }
 }
 
+// 按届级搜索并显示校友信息
 void AlumniList::searchByGraduationYear(const int year) {
     Alumni *current = head;
     int count = 0;
@@ -187,6 +195,7 @@ void AlumniList::searchByGraduationYear(const int year) {
     }
 }
 
+// 按专业搜索并显示校友信息
 void AlumniList::searchByMajor(const std::string &major) {
     Alumni *current = head;
     int count = 0;
@@ -205,6 +214,7 @@ void AlumniList::searchByMajor(const std::string &major) {
     }
 }
 
+// 按班级搜索并显示校友信息
 void AlumniList::searchByClassName(const std::string &class_name) {
     Alumni *current = head;
     int count = 0;
@@ -223,10 +233,12 @@ void AlumniList::searchByClassName(const std::string &class_name) {
     }
 }
 
+// 按届级升序排序
 void AlumniList::ascendingSortGraduationYear() {
     for (int i = 0; i < size; i++) {
         Alumni *current = head, *pre = nullptr, *next = current->next;
         while (next != nullptr) {
+            // 如果当前节点的届级大于下一个节点，交换位置
             if (current->getGraduationYear() >= next->getGraduationYear()) {
                 current->next = next->next;
                 next->next = current;
@@ -238,6 +250,7 @@ void AlumniList::ascendingSortGraduationYear() {
                 pre = next;
                 next = current->next;
             } else {
+                // 向后移动指针
                 if (pre == nullptr) {
                     pre = current;
                 } else {
@@ -250,10 +263,12 @@ void AlumniList::ascendingSortGraduationYear() {
     }
 }
 
+// 按届级降序排序
 void AlumniList::descendingSortGraduationYear() {
     for (int i = 0; i < size; i++) {
         Alumni *current = head, *pre = nullptr, *next = current->next;
         while (next != nullptr) {
+            // 如果当前节点的届级小于下一个节点，交换位置
             if (current->getGraduationYear() <= next->getGraduationYear()) {
                 current->next = next->next;
                 next->next = current;
@@ -265,6 +280,7 @@ void AlumniList::descendingSortGraduationYear() {
                 pre = next;
                 next = current->next;
             } else {
+                // 向后移动指针
                 if (pre == nullptr) {
                     pre = current;
                 } else {
@@ -277,10 +293,12 @@ void AlumniList::descendingSortGraduationYear() {
     }
 }
 
+// 按姓名升序排序（冒泡排序）
 void AlumniList::ascendingSortName() {
     for (int i = 0; i < size; i++) {
         Alumni *current = head, *pre = nullptr, *next = current->next;
         while (next != nullptr) {
+            // 如果当前节点的姓名大于下一个节点，交换位置
             if (current->getName() >= next->getName()) {
                 current->next = next->next;
                 next->next = current;
@@ -292,6 +310,7 @@ void AlumniList::ascendingSortName() {
                 pre = next;
                 next = current->next;
             } else {
+                // 向后移动指针
                 if (pre == nullptr) {
                     pre = current;
                 } else {
@@ -304,10 +323,12 @@ void AlumniList::ascendingSortName() {
     }
 }
 
+// 按姓名降序排序
 void AlumniList::descendingSortName() {
     for (int i = 0; i < size; i++) {
         Alumni *current = head, *pre = nullptr, *next = current->next;
         while (next != nullptr) {
+            // 如果当前节点的姓名小于下一个节点，交换位置
             if (current->getName() <= next->getName()) {
                 current->next = next->next;
                 next->next = current;
@@ -319,6 +340,7 @@ void AlumniList::descendingSortName() {
                 pre = next;
                 next = current->next;
             } else {
+                // 向后移动指针
                 if (pre == nullptr) {
                     pre = current;
                 } else {
@@ -331,6 +353,7 @@ void AlumniList::descendingSortName() {
     }
 }
 
+// 将校友数据保存到文件
 void AlumniList::save() {
     ofstream outfile(file_name, ios::out);
     Alumni *current = head;
@@ -356,6 +379,7 @@ void AlumniList::save() {
     outfile.close();
 }
 
+// 用户登录验证
 Alumni *AlumniList::login(const std::string &username, const std::string &password) {
     Alumni *user = searchByUserName(username);
     if (user != nullptr && user->getPassword() == password) {

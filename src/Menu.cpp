@@ -3,9 +3,11 @@
 
 using namespace std;
 
+// 构造函数：初始化校友列表和用户指针
 Menu::Menu(string file_name): alumni_list(AlumniList(file_name)), user_ptr(nullptr) {
 }
 
+// 显示登录菜单
 void Menu::displayLoginMenu() {
     cout << "=====================================" << endl;
     cout << "        校友录管理系统 - 登录菜单        " << endl;
@@ -20,6 +22,7 @@ void Menu::displayLoginMenu() {
     handleLogin();
 }
 
+// 处理登录菜单选择
 void Menu::handleLogin() {
     int choice;
     cin >> choice;
@@ -59,6 +62,7 @@ void Menu::handleLogin() {
     }
 }
 
+// 处理校友登录
 void Menu::handleAlumniLogin() {
     cout << "请输入用户名：" << endl;
     string user_name;
@@ -78,6 +82,7 @@ void Menu::handleAlumniLogin() {
     }
 }
 
+// 处理管理员登录
 void Menu::handleManagerLogin() {
     cout << "请输入用户名：" << endl;
     string user_name;
@@ -102,6 +107,7 @@ void Menu::handleManagerLogin() {
     displayLoginMenu();
 }
 
+// 显示校友功能菜单
 void Menu::displayAlumniMenu() {
     system("cls");
     cout << "=====================================" << endl;
@@ -115,10 +121,11 @@ void Menu::displayAlumniMenu() {
     cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
-    identity = 1;
+    identity = 1;  // 设置身份标识为校友
     handleAlumniMenu();
 }
 
+// 处理校友菜单选择
 void Menu::handleAlumniMenu() {
     int choice;
     cin >> choice;
@@ -171,6 +178,7 @@ void Menu::handleAlumniMenu() {
     }
 }
 
+// 显示访客功能菜单
 void Menu::displayVisitorMenu() {
     system("cls");
     cout << "=====================================" << endl;
@@ -181,10 +189,11 @@ void Menu::displayVisitorMenu() {
     cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
-    identity = 2;
+    identity = 2;  // 设置身份标识为访客
     handleVisitorMenu();
 }
 
+// 处理访客菜单选择
 void Menu::handleVisitorMenu() {
     int choice;
     cin >> choice;
@@ -216,6 +225,7 @@ void Menu::handleVisitorMenu() {
     }
 }
 
+// 显示管理员功能菜单
 void Menu::displayManagerMenu() {
     system("cls");
     cout << "=====================================" << endl;
@@ -232,10 +242,11 @@ void Menu::displayManagerMenu() {
     cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
-    identity = 3;
+    identity = 3;  // 设置身份标识为管理员
     handleManagerMenu();
 }
 
+// 处理管理员菜单选择
 void Menu::handleManagerMenu() {
     int choice;
     cin >> choice;
@@ -303,6 +314,7 @@ void Menu::handleManagerMenu() {
     }
 }
 
+// 返回上一级菜单
 void Menu::backToMenu(int identity) {
     switch (identity) {
         case 1: {
@@ -320,6 +332,7 @@ void Menu::backToMenu(int identity) {
     }
 }
 
+// 显示排序菜单
 void Menu::displaySortMenu() {
     system("cls");
     cout << "=====================================" << endl;
@@ -334,6 +347,7 @@ void Menu::displaySortMenu() {
     cout << select;
 }
 
+// 处理排序菜单选择
 void Menu::handleSortMenu() {
     int choice;
     cin >> choice;
@@ -370,6 +384,7 @@ void Menu::handleSortMenu() {
     backToMenu(identity);
 }
 
+// 显示搜索菜单
 void Menu::displaySearchMenu() {
     system("cls");
     cout << "=====================================" << endl;
@@ -384,6 +399,7 @@ void Menu::displaySearchMenu() {
     cout << select;
 }
 
+// 处理搜索菜单选择
 void Menu::handleSearchMenu(const int &identity) {
     int choice;
     cin >> choice;
@@ -428,6 +444,7 @@ void Menu::handleSearchMenu(const int &identity) {
     }
 }
 
+// 录入新校友信息
 void Menu::handleAdd() {
     system("cls");
     cout << "请输入新校友用户名：";
@@ -478,6 +495,7 @@ void Menu::handleAdd() {
     backToMenu(identity);
 }
 
+// 删除校友信息
 void Menu::handleDelete() {
     system("cls");
     cout << "请输入要删除的校友姓名：";
@@ -491,6 +509,7 @@ void Menu::handleDelete() {
     backToMenu(identity);
 }
 
+// 修改校友信息
 void Menu::handleUpdate() {
     cout << "请输入要修改的校友姓名：";
     string name;
