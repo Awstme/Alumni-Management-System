@@ -7,12 +7,14 @@ using namespace std;
 Alumni::Alumni(string user_name, string password,
                string name, string gender, int age, int graduationYear,
                string major, string className,
-               string address, string phone, string qq, string email) : Person(user_name, password), next(nullptr),
-                                                                        name(name), gender(gender), age(age),
-                                                                        graduationYear(graduationYear),
-                                                                        major(major), className(className),
-                                                                        address(address), phone(phone),
-                                                                        qq(qq), email(email) { ; }
+               string address, string phone, string qq, string email,
+               int is_manager) : Person(user_name, password), next(nullptr),
+                                 name(name), gender(gender), age(age),
+                                 graduationYear(graduationYear),
+                                 major(major), className(className),
+                                 address(address), phone(phone),
+                                 qq(qq), email(email),
+                                 is_manager(is_manager) { ; }
 
 void Alumni::setName(string newName) { name = newName; }
 void Alumni::setGender(string newGender) { gender = newGender; }
@@ -35,6 +37,8 @@ string Alumni::getAddress() { return address; }
 string Alumni::getPhone() { return phone; }
 string Alumni::getQq() { return qq; }
 string Alumni::getEmail() { return email; }
+
+int Alumni::isManager() { return is_manager; }
 
 void Alumni::display(const int &detailValue) {
     cout << left << setfill(' ');

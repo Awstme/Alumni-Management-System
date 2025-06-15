@@ -9,20 +9,16 @@ class Menu {
 public:
     Menu(std::string file_name);
 
-    // 显示登录菜单
     void displayLoginMenu();
 
-    // 处理登录选项
     void handleLogin();
 
     void handleAlumniLogin();
 
     void handleManagerLogin();
 
-    // 显示功能菜单
     void displayAlumniMenu();
 
-    // 处理功能选项
     void handleAlumniMenu();
 
     void displayVisitorMenu();

@@ -38,7 +38,7 @@ void Menu::handleLogin() {
         }
         case 3: {
             cout << "您选择了：管理员登录" << endl;
-            displayManagerMenu();
+            handleManagerLogin();
             break;
         }
         case 0: {
@@ -74,6 +74,22 @@ void Menu::handleAlumniLogin() {
 }
 
 void Menu::handleManagerLogin() {
+    cout << "请输入用户名：" << endl;
+    string user_name;
+    cin >> user_name;
+    cout << "请输入密码：" << endl;
+    string password;
+    cin >> password;
+    user_ptr = alumni_list.login(user_name, password);
+    if (user_ptr) {
+        if (user_ptr->isManager()) {
+            cout << "登录成功！" << endl;
+            displayManagerMenu();
+            return;
+        }
+        cout << "您未拥有管理员权限！" << endl;
+    } else { cout << "登录失败：用户名或密码错误" << endl; }
+    displayLoginMenu();
 }
 
 void Menu::displayAlumniMenu() {
@@ -126,6 +142,8 @@ void Menu::handleAlumniMenu() {
         }
         case 5: {
             cout << you_select << modify_password << endl;
+            user_ptr->modifyPassword();
+            backToMenu(identity);
             break;
         }
         case 0: {
@@ -135,7 +153,7 @@ void Menu::handleAlumniMenu() {
         }
         default: {
             cout << invalid_input << endl;
-            displayAlumniMenu(); // 如果选择无效，重新显示菜单
+            displayAlumniMenu();
             break;
         }
     }
@@ -233,6 +251,27 @@ void Menu::handleManagerMenu() {
         case 5: {
             cout << you_select << delete_alumni << endl;
             handleDelete();
+            break;
+        }
+        case 6: {
+            cout << you_select << profile << endl;
+            user_ptr->display(3);
+            cout << press_any_key_to_back << endl;
+            cin.ignore();
+            cin.get();
+            backToMenu(identity);
+            break;
+        }
+        case 7: {
+            cout << you_select << modify_profile << endl;
+            alumni_list.updateAlumni(user_ptr->getName());
+            backToMenu(identity);
+            break;
+        }
+        case 8: {
+            cout << you_select << modify_password << endl;
+            user_ptr->modifyPassword();
+            backToMenu(identity);
             break;
         }
         case 0: {
@@ -378,6 +417,9 @@ void Menu::handleAdd() {
     cout << "请输入密码：";
     string password;
     cin >> password;
+    cout << "是否授予管理员权限（请输入1授予或0不授予）：";
+    int is_manager;
+    cin >> is_manager;
     cout << "请输入新校友姓名：";
     string name;
     cin >> name;
@@ -411,7 +453,8 @@ void Menu::handleAdd() {
     Alumni *new_alumni = new Alumni(user_name, password,
                                     name, gender, age, graduationYear,
                                     major, className,
-                                    address, phone, qq, email);
+                                    address, phone, qq, email,
+                                    is_manager);
     alumni_list.addAlumni(new_alumni);
     backToMenu(identity);
 }

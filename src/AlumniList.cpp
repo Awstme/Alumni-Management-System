@@ -15,22 +15,24 @@ AlumniList::AlumniList(const string &fileName) : size(0), head(nullptr), file_na
     Alumni *current = nullptr;
     while (!inFile.eof()) {
         string user_name, password, name, gender, major, className, address, phone, qq, email;
-        int age, graduationYear;
-        inFile >> user_name >> password
+        int age, graduationYear, is_manager;
+        inFile >> user_name >> password >> is_manager
                 >> name >> gender >> age >> graduationYear >> major >> className
                 >> address >> phone >> qq >> email;
         if (size == 0) {
             head = new Alumni(user_name, password,
                               name, gender, age, graduationYear,
                               major, className,
-                              address, phone, qq, email);
+                              address, phone, qq, email,
+                              is_manager);
             current = head;
             size++;
         } else {
             current->next = new Alumni(user_name, password,
                                        name, gender, age, graduationYear,
                                        major, className,
-                                       address, phone, qq, email);
+                                       address, phone, qq, email,
+                                       is_manager);
             current = current->next;
             size++;
         }
@@ -337,6 +339,7 @@ void AlumniList::save() {
     while (current != nullptr) {
         outfile << current->getUserName() << " "
                 << current->getPassword() << " "
+                << current->isManager() << " "
                 << current->getName() << " "
                 << current->getGender() << " "
                 << current->getAge() << " "

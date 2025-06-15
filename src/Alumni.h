@@ -11,7 +11,8 @@ public:
     Alumni(std::string user_name, std::string password,
            std::string name, std::string gender, int age, int graduationYear,
            std::string major, std::string className,
-           std::string address, std::string phone, std::string qq, std::string email);
+           std::string address, std::string phone, std::string qq, std::string email,
+           int is_manager);
 
     void setName(std::string newName);
 
@@ -53,7 +54,10 @@ public:
 
     std::string getEmail();
 
+    int isManager();
+
     void display(const int &detailValue);
+
 protected:
     std::string name;
     std::string gender;
@@ -66,6 +70,7 @@ protected:
     std::string phone;
     std::string qq;
     std::string email;
+    int is_manager;
 };
 
 #endif // ALUMNI_H

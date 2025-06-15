@@ -5,23 +5,21 @@
 
 class Person {
 public:
-    // Person(int identity);
     Person(std::string user_name, std::string password);
 
-    void setUserName(std::string new_name);
+    // void setUserName(std::string new_name);
 
-    void setPassword(std::string new_password);
+    void setPassword(const std::string &new_password);
 
     std::string getUserName();
 
     std::string getPassword();
 
-    std::string modifyPassword();
+    void modifyPassword();
 
 protected:
     std::string user_name;
     std::string password;
-    // int identity;
 };
 
 
