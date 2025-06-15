@@ -97,16 +97,15 @@ void AlumniList::updateAlumni(const std::string &name) {
                 }
                 case 0: {
                     cout << "已取消修改！" << endl;
-
                     break;
                 }
                 default: {
+                    system("cls");
                     cout << "输入错误！请重新输入！" << endl;
                     updateAlumni(name);
                     break;
                 }
             }
-            // 返回上级菜单
             return;
         }
         current = current->next;
@@ -125,7 +124,6 @@ void AlumniList::deleteAlumni(const std::string &name) {
             }
             size--;
             // delete current;
-            cout << "删除成功！" << endl;
             return;
         }
         pre = current;

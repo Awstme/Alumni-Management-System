@@ -27,22 +27,26 @@ void Menu::handleLogin() {
 
     switch (choice) {
         case 1: {
+            system("cls");
             cout << "您选择了：校友登录" << endl;
             handleAlumniLogin();
             break;
         }
         case 2: {
+            system("cls");
             cout << "您选择了：访客登录" << endl;
             displayVisitorMenu();
             break;
         }
         case 3: {
+            system("cls");
             cout << "您选择了：管理员登录" << endl;
             handleManagerLogin();
             break;
         }
         case 0: {
             alumni_list.save();
+            system("cls");
             cout << "您选择了：退出系统" << endl;
             cout << "感谢使用校友录管理系统！" << endl;
             // exit(0);
@@ -65,10 +69,12 @@ void Menu::handleAlumniLogin() {
     cin >> password;
     user_ptr = alumni_list.login(user_name, password);
     if (user_ptr) {
+        system("cls");
         cout << "登录成功！" << endl;
         displayAlumniMenu();
     } else {
-        cout << "登录失败！" << endl;
+        system("cls");
+        cout << "登录失败：用户名或密码错误" << endl;
         displayLoginMenu();
     }
 }
@@ -83,16 +89,22 @@ void Menu::handleManagerLogin() {
     user_ptr = alumni_list.login(user_name, password);
     if (user_ptr) {
         if (user_ptr->isManager()) {
+            system("cls");
             cout << "登录成功！" << endl;
             displayManagerMenu();
             return;
         }
+        system("cls");
         cout << "您未拥有管理员权限！" << endl;
-    } else { cout << "登录失败：用户名或密码错误" << endl; }
+    } else {
+        system("cls");
+        cout << "登录失败：用户名或密码错误" << endl;
+    }
     displayLoginMenu();
 }
 
 void Menu::displayAlumniMenu() {
+    system("cls");
     cout << "=====================================" << endl;
     cout << "       校友录管理系统 - 校友功能菜单      " << endl;
     cout << "=====================================" << endl;
@@ -147,6 +159,7 @@ void Menu::handleAlumniMenu() {
             break;
         }
         case 0: {
+            system("cls");
             cout << logout << "..." << endl;
             displayLoginMenu();
             break;
@@ -160,6 +173,7 @@ void Menu::handleAlumniMenu() {
 }
 
 void Menu::displayVisitorMenu() {
+    system("cls");
     cout << "=====================================" << endl;
     cout << "       校友录管理系统 - 访客功能菜单      " << endl;
     cout << "=====================================" << endl;
@@ -190,6 +204,7 @@ void Menu::handleVisitorMenu() {
             break;
         }
         case 0: {
+            system("cls");
             cout << logout << "..." << endl;
             displayLoginMenu();
             break;
@@ -203,6 +218,7 @@ void Menu::handleVisitorMenu() {
 }
 
 void Menu::displayManagerMenu() {
+    system("cls");
     cout << "=====================================" << endl;
     cout << "       校友录管理系统 - 管理员功能菜单      " << endl;
     cout << "=====================================" << endl;
@@ -275,6 +291,7 @@ void Menu::handleManagerMenu() {
             break;
         }
         case 0: {
+            system("cls");
             cout << logout << "..." << endl;
             displayLoginMenu();
             break;
@@ -305,6 +322,7 @@ void Menu::backToMenu(int identity) {
 }
 
 void Menu::displaySortMenu() {
+    system("cls");
     cout << "=====================================" << endl;
     cout << "       校友录管理系统 - 排序功能菜单      " << endl;
     cout << "=====================================" << endl;
@@ -354,6 +372,7 @@ void Menu::handleSortMenu() {
 }
 
 void Menu::displaySearchMenu() {
+    system("cls");
     cout << "=====================================" << endl;
     cout << "       校友录管理系统 - 查找功能菜单      " << endl;
     cout << "=====================================" << endl;
@@ -411,10 +430,11 @@ void Menu::handleSearchMenu(const int &identity) {
 }
 
 void Menu::handleAdd() {
-    cout << "请输入用户名：";
+    system("cls");
+    cout << "请输入新校友用户名：";
     string user_name;
     cin >> user_name;
-    cout << "请输入密码：";
+    cout << "请输入新校友密码：";
     string password;
     cin >> password;
     cout << "是否授予管理员权限（请输入1授予或0不授予）：";
@@ -460,10 +480,15 @@ void Menu::handleAdd() {
 }
 
 void Menu::handleDelete() {
+    system("cls");
     cout << "请输入要删除的校友姓名：";
     string name;
     cin >> name;
     alumni_list.deleteAlumni(name);
+    cout << "删除成功！" << endl;
+    cout << press_any_key_to_back;
+    cin.ignore();
+    cin.get();
     backToMenu(identity);
 }
 
@@ -472,5 +497,8 @@ void Menu::handleUpdate() {
     string name;
     cin >> name;
     alumni_list.updateAlumni(name);
+    cout << press_any_key_to_back;
+    cin.ignore();
+    cin.get();
     backToMenu(identity);
 }
