@@ -3,7 +3,6 @@
 
 #include "Person.h"
 
-
 class Alumni : public Person {
 public:
     Alumni *next;
