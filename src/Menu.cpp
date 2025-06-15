@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Menu::Menu(string file_name): alumni_list(AlumniList(file_name)),user_ptr(nullptr) {
+Menu::Menu(string file_name): alumni_list(AlumniList(file_name)), user_ptr(nullptr) {
 }
 
 void Menu::displayLoginMenu() {
@@ -17,6 +17,7 @@ void Menu::displayLoginMenu() {
     cout << "0. 退出系统" << endl;
     cout << "=====================================" << endl;
     cout << select;
+    identity = 0;
     handleLogin();
 }
 
@@ -87,6 +88,7 @@ void Menu::displayAlumniMenu() {
     cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
+    identity = 1;
     handleAlumniMenu();
 }
 
@@ -98,7 +100,7 @@ void Menu::handleAlumniMenu() {
         case 1: {
             cout << you_select << displayAlumniList << endl;
             displaySortMenu();
-            handleSortMenu(1);
+            handleSortMenu();
             break;
         }
         case 2: {
@@ -109,11 +111,17 @@ void Menu::handleAlumniMenu() {
         }
         case 3: {
             cout << you_select << profile << endl;
-            user_ptr -> display(3);
+            user_ptr->display(3);
+            cout << press_any_key_to_back << endl;
+            cin.ignore();
+            cin.get();
+            backToMenu(identity);
             break;
         }
         case 4: {
             cout << you_select << modify_profile << endl;
+            alumni_list.updateAlumni(user_ptr->getName());
+            backToMenu(identity);
             break;
         }
         case 5: {
@@ -142,6 +150,7 @@ void Menu::displayVisitorMenu() {
     cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
+    identity = 2;
     handleVisitorMenu();
 }
 
@@ -153,7 +162,7 @@ void Menu::handleVisitorMenu() {
         case 1: {
             cout << you_select << displayAlumniList << endl;
             displaySortMenu();
-            handleSortMenu(2);
+            handleSortMenu();
             break;
         }
         case 2: {
@@ -190,6 +199,7 @@ void Menu::displayManagerMenu() {
     cout << "0. " << logout << endl;
     cout << "=====================================" << endl;
     cout << select;
+    identity = 3;
     handleManagerMenu();
 }
 
@@ -201,7 +211,7 @@ void Menu::handleManagerMenu() {
         case 1: {
             cout << you_select << displayAlumniList << endl;
             displaySortMenu();
-            handleSortMenu(3);
+            handleSortMenu();
             break;
         }
         case 2: {
@@ -238,6 +248,23 @@ void Menu::handleManagerMenu() {
     }
 }
 
+void Menu::backToMenu(int identity) {
+    switch (identity) {
+        case 1: {
+            displayAlumniMenu();
+            break;
+        }
+        case 2: {
+            displayVisitorMenu();
+            break;
+        }
+        case 3: {
+            displayManagerMenu();
+            break;
+        }
+    }
+}
+
 void Menu::displaySortMenu() {
     cout << "=====================================" << endl;
     cout << "       校友录管理系统 - 排序功能菜单      " << endl;
@@ -251,61 +278,40 @@ void Menu::displaySortMenu() {
     cout << select;
 }
 
-void Menu::handleSortMenu(const int &identity) {
+void Menu::handleSortMenu() {
     int choice;
     cin >> choice;
     switch (choice) {
         case 1: {
             alumni_list.ascendingSortGraduationYear();
-            alumni_list.display(1);
+            if (identity == 1 || identity == 3) { alumni_list.display(2); } else { alumni_list.display(1); }
             break;
         }
         case 2: {
             alumni_list.descendingSortGraduationYear();
-            alumni_list.display(1);
+            if (identity == 1 || identity == 3) { alumni_list.display(2); } else { alumni_list.display(1); }
             break;
         }
         case 3: {
             alumni_list.ascendingSortName();
-            alumni_list.display(1);
+            if (identity == 1 || identity == 3) { alumni_list.display(2); } else { alumni_list.display(1); }
             break;
         }
         case 4: {
             alumni_list.descendingSortName();
-            alumni_list.display(1);
+            if (identity == 1 || identity == 3) { alumni_list.display(2); } else { alumni_list.display(1); }
             break;
         }
         case 0: {
             cout << "返回上一级菜单..." << endl;
-            switch (identity) {
-                case 1:
-                    displayAlumniMenu();
-                    break;
-                case 2:
-                    displayManagerMenu();
-                    break;
-                case 3:
-                    displayVisitorMenu();
-                    break;
-            }
+            backToMenu(identity);
             return;
-            // break;
         }
     }
-    cout << "按任意键返回上级菜单" << endl;
+    cout << press_any_key_to_back << endl;
     cin.ignore();
     cin.get();
-    switch (identity) {
-        case 1:
-            displayAlumniMenu();
-            break;
-        case 2:
-            displayManagerMenu();
-            break;
-        case 3:
-            displayVisitorMenu();
-            break;
-    }
+    backToMenu(identity);
 }
 
 void Menu::displaySearchMenu() {
@@ -355,19 +361,7 @@ void Menu::handleSearchMenu(const int &identity) {
         }
         case 0: {
             cout << "返回上一级菜单..." << endl;
-            // 返回上一级菜单函数
-            switch (identity) {
-                case 1:
-                    displayAlumniMenu();
-                    break;
-                case 2:
-                    displayManagerMenu();
-                    break;
-                case 3:
-                    displayVisitorMenu();
-                    break;
-            }
-
+            backToMenu(identity);
             break;
         }
         default: {
@@ -419,7 +413,7 @@ void Menu::handleAdd() {
                                     className, major,
                                     address, phone, qq, email);
     alumni_list.addAlumni(new_alumni);
-    displayManagerMenu(); // 返回上级菜单
+    backToMenu(identity);
 }
 
 void Menu::handleDelete() {
@@ -427,7 +421,7 @@ void Menu::handleDelete() {
     string name;
     cin >> name;
     alumni_list.deleteAlumni(name);
-    displayManagerMenu(); // 返回上级菜单
+    backToMenu(identity);
 }
 
 void Menu::handleUpdate() {
@@ -435,5 +429,5 @@ void Menu::handleUpdate() {
     string name;
     cin >> name;
     alumni_list.updateAlumni(name);
-    displayManagerMenu(); // 返回上级菜单
+    backToMenu(identity);
 }

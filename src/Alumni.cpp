@@ -37,7 +37,7 @@ string Alumni::getQq() { return qq; }
 string Alumni::getEmail() { return email; }
 
 void Alumni::display(const int &detailValue) {
-    cout << left; /*<<setfill(' ')*/
+    cout << left << setfill(' ');
     if (detailValue >= 3) {
         cout << setw(10) << "用户名：" << setw(12) << user_name;
     }
@@ -53,4 +53,5 @@ void Alumni::display(const int &detailValue) {
                 << setw(4) << "QQ：" << setw(12) << qq
                 << setw(6) << "邮箱：" << setw(15) << email << endl;
     }
+    cout << setw(80) << setfill('-') << "-" << endl;
 }

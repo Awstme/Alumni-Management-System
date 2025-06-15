@@ -33,9 +33,11 @@ public:
 
     void handleManagerMenu();
 
+    void backToMenu(int identity);
+
     void displaySortMenu();
 
-    void handleSortMenu(const int &identity);
+    void handleSortMenu();
 
     void displaySearchMenu();
 
@@ -50,6 +52,7 @@ public:
 protected:
     AlumniList alumni_list;
     Alumni *user_ptr;
+    int identity;
     const std::string select = "输入数字序号选择功能:";
     const std::string you_select = "你选择了:";
     const std::string displayAlumniList = "显示校友列表";
@@ -61,11 +64,9 @@ protected:
     const std::string change_alumni = "修改校友信息";
     const std::string modify_password = "修改密码";
     const std::string logout = "注销登录";
-    // const std::string exit="退出系统";
     const std::string back = "返回上一级";
     const std::string invalid_input = "无效的输入！";
-    const std::string ascending_sort_by_gratuation_year = "按毕业年份升序排序";
-    const std::string descending_sort_by_gratuation_year = "按毕业年份降序排序";
+    const std::string press_any_key_to_back="按任意键返回上一级菜单";
 };
 
 
