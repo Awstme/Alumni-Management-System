@@ -8,9 +8,10 @@ class Alumni : public Person {
 public:
     Alumni *next;
 
-    Alumni(std::string name, std::string gender, int age, int graduationYear, std::string department,
-           std::string className, std::string address,
-           std::string phone, std::string qq, std::string email);
+    Alumni(std::string user_name, std::string password,
+           std::string name, std::string gender, int age, int graduationYear,
+           std::string major, std::string className,
+           std::string address, std::string phone, std::string qq, std::string email);
 
     void setName(std::string newName);
 
@@ -52,10 +53,7 @@ public:
 
     std::string getEmail();
 
-    void display();
-
-    void displayDetail();
-
+    void display(const int &detailValue);
 protected:
     std::string name;
     std::string gender;

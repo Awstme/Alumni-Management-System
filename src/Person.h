@@ -5,7 +5,8 @@
 
 class Person {
 public:
-    Person(int identity);
+    // Person(int identity);
+    Person(std::string user_name, std::string password);
 
     void setUserName(std::string new_name);
 
@@ -13,12 +14,14 @@ public:
 
     std::string getUserName();
 
+    std::string getPassword();
+
     std::string modifyPassword();
 
 protected:
     std::string user_name;
     std::string password;
-    int identity;
+    // int identity;
 };
 
 

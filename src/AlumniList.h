@@ -13,12 +13,11 @@ public:
 
     void deleteAlumni(const std::string &name);
 
-    void display();
+    void display(const int &detailValue);
 
-    void displayDetail();
+    Alumni *searchByUserName(const std::string &user_name);
 
     void searchByName(const std::string &name);
-
     void searchByGraduationYear(int year);
 
     void searchByMajor(const std::string &major);
@@ -34,6 +33,8 @@ public:
     void descendingSortName();
 
     void save();
+
+    Alumni *login(const std::string &username, const std::string &password);
 protected:
     int size;
     Alumni *head;

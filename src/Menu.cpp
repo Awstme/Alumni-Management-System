@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Menu::Menu(string file_name): alumni_list(AlumniList(file_name)) {
+Menu::Menu(string file_name): alumni_list(AlumniList(file_name)),user_ptr(nullptr) {
 }
 
 void Menu::displayLoginMenu() {
@@ -27,7 +27,7 @@ void Menu::handleLogin() {
     switch (choice) {
         case 1: {
             cout << "您选择了：校友登录" << endl;
-            displayAlumniMenu();
+            handleAlumniLogin();
             break;
         }
         case 2: {
@@ -53,6 +53,26 @@ void Menu::handleLogin() {
             break;
         }
     }
+}
+
+void Menu::handleAlumniLogin() {
+    cout << "请输入用户名：" << endl;
+    string user_name;
+    cin >> user_name;
+    cout << "请输入密码：" << endl;
+    string password;
+    cin >> password;
+    user_ptr = alumni_list.login(user_name, password);
+    if (user_ptr) {
+        cout << "登录成功！" << endl;
+        displayAlumniMenu();
+    } else {
+        cout << "登录失败！" << endl;
+        displayLoginMenu();
+    }
+}
+
+void Menu::handleManagerLogin() {
 }
 
 void Menu::displayAlumniMenu() {
@@ -89,6 +109,7 @@ void Menu::handleAlumniMenu() {
         }
         case 3: {
             cout << you_select << profile << endl;
+            user_ptr -> display(3);
             break;
         }
         case 4: {
@@ -236,22 +257,22 @@ void Menu::handleSortMenu(const int &identity) {
     switch (choice) {
         case 1: {
             alumni_list.ascendingSortGraduationYear();
-            alumni_list.display();
+            alumni_list.display(1);
             break;
         }
         case 2: {
             alumni_list.descendingSortGraduationYear();
-            alumni_list.display();
+            alumni_list.display(1);
             break;
         }
         case 3: {
             alumni_list.ascendingSortName();
-            alumni_list.display();
+            alumni_list.display(1);
             break;
         }
         case 4: {
             alumni_list.descendingSortName();
-            alumni_list.display();
+            alumni_list.display(1);
             break;
         }
         case 0: {
@@ -357,6 +378,12 @@ void Menu::handleSearchMenu(const int &identity) {
 }
 
 void Menu::handleAdd() {
+    cout << "请输入用户名：";
+    string username;
+    cin >> username;
+    cout << "请输入密码：";
+    string password;
+    cin >> password;
     cout << "请输入新校友姓名：";
     string name;
     cin >> name;
@@ -387,7 +414,10 @@ void Menu::handleAdd() {
     cout << "请输入新校友邮箱：";
     string email;
     cin >> email;
-    Alumni *new_alumni = new Alumni(name, gender, age, graduationYear, className, major, address, phone, qq, email);
+    Alumni *new_alumni = new Alumni(username, password,
+                                    name, gender, age, graduationYear,
+                                    className, major,
+                                    address, phone, qq, email);
     alumni_list.addAlumni(new_alumni);
     displayManagerMenu(); // 返回上级菜单
 }

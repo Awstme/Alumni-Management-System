@@ -15,6 +15,10 @@ public:
     // 处理登录选项
     void handleLogin();
 
+    void handleAlumniLogin();
+
+    void handleManagerLogin();
+
     // 显示功能菜单
     void displayAlumniMenu();
 
@@ -45,6 +49,7 @@ public:
 
 protected:
     AlumniList alumni_list;
+    Alumni *user_ptr;
     const std::string select = "输入数字序号选择功能:";
     const std::string you_select = "你选择了:";
     const std::string displayAlumniList = "显示校友列表";

@@ -14,29 +14,35 @@ AlumniList::AlumniList(const string &fileName) : size(0), head(nullptr), file_na
     // 读取文件到链表中
     Alumni *current = nullptr;
     while (!inFile.eof()) {
-        string name, gender, department, className, address, phone, qq, email;
+        string user_name, password, name, gender, major, className, address, phone, qq, email;
         int age, graduationYear;
-        inFile >> name >> gender >> age >> graduationYear >> department >> className >> address >> phone >> qq >> email;
+        inFile >> user_name >> password
+                >> name >> gender >> age >> graduationYear >> major >> className
+                >> address >> phone >> qq >> email;
         if (size == 0) {
-            head = new Alumni(name, gender, age, graduationYear, department, className, address, phone, qq, email);
+            head = new Alumni(user_name, password,
+                              name, gender, age, graduationYear,
+                              major, className,
+                              address, phone, qq, email);
             current = head;
             size++;
         } else {
-            current->next = new Alumni(name, gender, age, graduationYear, department, className, address, phone, qq,
-                                       email);
+            current->next = new Alumni(user_name, password,
+                                       name, gender, age, graduationYear,
+                                       major, className,
+                                       address, phone, qq, email);
             current = current->next;
             size++;
         }
     }
     inFile.close();
-    ascendingSortGraduationYear();
 }
 
 void AlumniList::addAlumni(Alumni *new_alumni) {
     new_alumni->next = head;
     head = new_alumni;
     size++;
-    head->display();
+    head->display(1);
     cout << "添加成功！" << endl;
 }
 
@@ -126,15 +132,23 @@ void AlumniList::deleteAlumni(const std::string &name) {
     cout << "未找到此校友！" << endl;
 }
 
-void AlumniList::display() {
+void AlumniList::display(const int &detailValue) {
     Alumni *current = head;
     while (current != nullptr) {
-        current->display();
+        current->display(detailValue);
         current = current->next;
     }
 }
 
-void AlumniList::displayDetail() {
+Alumni *AlumniList::searchByUserName(const std::string &user_name) {
+    Alumni *current = head;
+    while (current != nullptr) {
+        if (current->getUserName() == user_name) {
+            return current;
+        }
+        current = current->next;
+    }
+    return nullptr;
 }
 
 void AlumniList::searchByName(const std::string &name) {
@@ -143,7 +157,7 @@ void AlumniList::searchByName(const std::string &name) {
     while (current != nullptr) {
         if (current->getName() == name) {
             cout << "找到校友：" << endl;
-            current->display();
+            current->display(1);
             count++;
         }
         current = current->next;
@@ -161,7 +175,7 @@ void AlumniList::searchByGraduationYear(const int year) {
     while (current != nullptr) {
         if (current->getGraduationYear() == year) {
             cout << "找到校友：" << endl;
-            current->display();
+            current->display(1);
             count++;
         }
         current = current->next;
@@ -179,7 +193,7 @@ void AlumniList::searchByMajor(const std::string &major) {
     while (current != nullptr) {
         if (current->getMajor() == major) {
             cout << "找到校友：" << endl;
-            current->display();
+            current->display(1);
             count++;
         }
         current = current->next;
@@ -197,7 +211,7 @@ void AlumniList::searchByClassName(const std::string &class_name) {
     while (current != nullptr) {
         if (current->getClassName() == class_name) {
             cout << "找到校友：" << endl;
-            current->display();
+            current->display(1);
             count++;
         }
         current = current->next;
@@ -321,7 +335,9 @@ void AlumniList::save() {
     ofstream outfile(file_name, ios::out);
     Alumni *current = head;
     while (current != nullptr) {
-        outfile << current->getName() << " "
+        outfile << current->getUserName() << " "
+                << current->getPassword() << " "
+                << current->getName() << " "
                 << current->getGender() << " "
                 << current->getAge() << " "
                 << current->getGraduationYear() << " "
@@ -337,4 +353,12 @@ void AlumniList::save() {
         }
     }
     outfile.close();
+}
+
+Alumni *AlumniList::login(const std::string &username, const std::string &password) {
+    Alumni *user = searchByUserName(username);
+    if (user != nullptr && user->getPassword() == password) {
+        return user;
+    }
+    return nullptr;
 }
