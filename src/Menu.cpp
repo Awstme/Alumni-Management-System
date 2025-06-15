@@ -373,8 +373,8 @@ void Menu::handleSearchMenu(const int &identity) {
 
 void Menu::handleAdd() {
     cout << "请输入用户名：";
-    string username;
-    cin >> username;
+    string user_name;
+    cin >> user_name;
     cout << "请输入密码：";
     string password;
     cin >> password;
@@ -408,9 +408,9 @@ void Menu::handleAdd() {
     cout << "请输入新校友邮箱：";
     string email;
     cin >> email;
-    Alumni *new_alumni = new Alumni(username, password,
+    Alumni *new_alumni = new Alumni(user_name, password,
                                     name, gender, age, graduationYear,
-                                    className, major,
+                                    major, className,
                                     address, phone, qq, email);
     alumni_list.addAlumni(new_alumni);
     backToMenu(identity);
